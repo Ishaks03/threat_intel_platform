@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreatVision - Threat Intelligence Platform</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <svg class="shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span class="brand-name">ThreatVision</span>
+        </div>
+        
+        <div class="nav-status">
+            <div class="feed-status" id="feedStatusDots">
+                <!-- Feed status dots will be populated by JS -->
+            </div>
+            <span class="last-updated" id="lastUpdated">Last updated: --</span>
+        </div>
+        
+        <div class="nav-actions">
+            <button class="btn btn-primary" id="refreshFeedsBtn">
+                <span class="btn-icon">↻</span> Refresh Feeds
+            </button>
+            <button class="btn btn-secondary" id="runCorrelationBtn">
+                <span class="btn-icon">⚡</span> Run Correlation
+            </button>
+        </div>
+        
+        <div class="nav-tabs">
+            <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+            <button class="tab-btn" data-tab="iocs">IOC Explorer</button>
+            <button class="tab-btn" data-tab="correlations">Correlations</button>
+            <button class="tab-btn" data-tab="feeds">Feeds</button>
+            <button class="tab-btn" data-tab="reports">Reports</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Tab -->
+        <section class="tab-content active" id="dashboard">
+            <!-- KPI Cards -->
+            <div class="kpi-row">
+                <div class="kpi-card blue">
+                    <div class="kpi-icon">📊</div>
+                    <div class="kpi-value" id="totalIocs">0</div>
+                    <div class="kpi-label">Total IOCs Tracked</div>
+                </div>
+                <div class="kpi-card red pulse">
+                    <div class="kpi-icon">🔥</div>
+                    <div class="kpi-value" id="activeThreats">0</div>
+                    <div class="kpi-label">Active Threats</div>
+                </div>
+                <div class="kpi-card orange">
+                    <div class="kpi-icon">🎯</div>
+                    <div class="kpi-value" id="confirmedCorrelations">0</div>
+                    <div class="kpi-label">Confirmed Correlations</div>
+                </div>
+                <div class="kpi-card green">
+                    <div class="kpi-icon">🛡️</div>
+                    <div class="kpi-value" id="falsePositives">0</div>
+                    <div class="kpi-label">False Positives Filtered</div>
+                </div>
+            </div>
+
+            <!-- Charts Row 1 -->
+            <div class="charts-row">
+                <div class="chart-card">
+                    <h3>IOCs by Type</h3>
+                    <canvas id="iocTypeChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Threat Level Distribution</h3>
+                    <canvas id="threatLevelChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Charts Row 2 -->
+            <div class="charts-row">
+                <div class="chart-card">
+                    <h3>New IOCs (Last 7 Days)</h3>
+                    <canvas id="timelineChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Top Malware Families</h3>
+                    <canvas id="malwareFamilyChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Correlations Table -->
+            <div class="table-card">
+                <h3>Recent Correlations</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>IOC Value</th>
+                            <th>Type</th>
+                            <th>Malware Family</th>
+                            <th>Internal Host</th>
+                            <th>Threat Score</th>
+                            <th>Verdict</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentCorrelationsTable">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- IOC Explorer Tab -->
+        <section class="tab-content" id="iocs">
+            <!-- Search and Filter Bar -->
+            <div class="filter-bar">
+                <input type="text" class="search-input" id="iocSearchInput" placeholder="Search IOC value...">
+                
+                <div class="filter-chips">
+                    <button class="chip active" data-filter-type="all">All</button>
+                    <button class="chip" data-filter-type="ip">IP</button>
+                    <button class="chip" data-filter-type="domain">Domain</button>
+                    <button class="chip" data-filter-type="url">URL</button>
+                    <button class="chip" data-filter-type="hash">Hash</button>
+                    <button class="chip" data-filter-type="email">Email</button>
+                </div>
+
+                <select class="filter-select" id="severityFilter">
+                    <option value="">All Severities</option>
+                    <option value="Critical">Critical</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+
+                <select class="filter-select" id="feedFilter">
+                    <option value="">All Feeds</option>
+                    <option value="URLhaus">URLhaus</option>
+                    <option value="ThreatFox">ThreatFox</option>
+                    <option value="Feodo">Feodo</option>
+                    <option value="MalwareBazaar">MalwareBazaar</option>
+                    <option value="Demo">Demo</option>
+                    <option value="Manual">Manual</option>
+                </select>
+
+                <label class="checkbox-label">
+                    <input type="checkbox" id="activeOnlyCheckbox" checked>
+                    Active Only
+                </label>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-bar">
+                <button class="btn btn-primary" id="addManualIocBtn">+ Add Manual IOC</button>
+                <button class="btn btn-secondary" id="exportCsvBtn">Export CSV</button>
+                <button class="btn btn-secondary" id="exportTxtBtn">Export TXT</button>
+            </div>
+
+            <!-- IOC Table -->
+            <div class="table-card">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>IOC Value</th>
+                            <th>Type</th>
+                            <th>Severity</th>
+                            <th>Feed</th>
+                            <th>Threat Type</th>
+                            <th>Confidence</th>
+                            <th>First Seen</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="iocTable">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+                
+                <div class="pagination" id="iocPagination">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Correlations Tab -->
+        <section class="tab-content" id="correlations">
+            <div class="filter-bar">
+                <input type="date" class="filter-input" id="dateFromFilter" placeholder="From Date">
+                <input type="date" class="filter-input" id="dateToFilter" placeholder="To Date">
+                
+                <select class="filter-select" id="verdictFilter">
+                    <option value="">All Verdicts</option>
+                    <option value="Confirmed Threat">Confirmed Threat</option>
+                    <option value="Suspicious - Needs Review">Suspicious</option>
+                    <option value="Low Confidence Match">Low Confidence</option>
+                </select>
+
+                <select class="filter-select" id="hostFilter">
+                    <option value="">All Hosts</option>
+                    <!-- Populated by JS -->
+                </select>
+
+                <button class="btn btn-primary" id="generateBriefingBtn">Generate Daily Briefing</button>
+            </div>
+
+            <!-- Correlations Table -->
+            <div class="table-card">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>IOC</th>
+                            <th>Type</th>
+                            <th>Malware Family</th>
+                            <th>Internal Host</th>
+                            <th>User</th>
+                            <th>Log Source</th>
+                            <th>Threat Score</th>
+                            <th>Verdict</th>
+                            <th>Reviewed</th>
+                        </tr>
+                    </thead>
+                    <tbody id="correlationsTable">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+                
+                <div class="pagination" id="correlationsPagination">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Briefing Display Area -->
+            <div class="briefing-area" id="briefingArea" style="display: none;">
+                <h3>Daily Threat Briefing</h3>
+                <div class="briefing-meta" id="briefingMeta"></div>
+                <div class="briefing-content markdown" id="briefingContent"></div>
+            </div>
+        </section>
+
+        <!-- Feeds Tab -->
+        <section class="tab-content" id="feeds">
+            <div class="feeds-grid" id="feedsGrid">
+                <!-- Populated by JS -->
+            </div>
+
+            <div class="feed-notes">
+                <h3>About Threat Feeds</h3>
+                <p>All four abuse.ch feeds are <strong>completely free</strong> and require <strong>no API keys</strong>:</p>
+                <ul>
+                    <li><a href="https://urlhaus.abuse.ch" target="_blank">URLhaus</a> - Malicious URLs</li>
+                    <li><a href="https://threatfox.abuse.ch" target="_blank">ThreatFox</a> - IOCs shared by the community</li>
+                    <li><a href="https://feodotracker.abuse.ch" target="_blank">Feodo Tracker</a> - Botnet C2 infrastructure</li>
+                    <li><a href="https://bazaar.abuse.ch" target="_blank">MalwareBazaar</a> - Malware samples and hashes</li>
+                </ul>
+                <p>API keys are only required for IOC enrichment (VirusTotal, AbuseIPDB) and AI briefings (Gemini).</p>
+            </div>
+        </section>
+
+        <!-- Reports Tab -->
+        <section class="tab-content" id="reports">
+            <div class="action-bar">
+                <button class="btn btn-primary" id="generateReportBriefingBtn">Generate Daily Briefing</button>
+                <button class="btn btn-secondary" id="runFullCorrelationBtn">Run Full Correlation + Report</button>
+            </div>
+
+            <!-- Reports List -->
+            <div class="reports-list" id="reportsList">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- Report Display Area -->
+            <div class="report-area" id="reportArea" style="display: none;">
+                <div class="report-header">
+                    <h3 id="reportTitle">Report</h3>
+                    <button class="btn btn-secondary" id="downloadReportBtn">Download JSON</button>
+                </div>
+                <div class="report-stats" id="reportStats"></div>
+                <div class="briefing-content markdown" id="reportBriefing"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- IOC Detail Modal -->
+    <div class="modal" id="iocModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalIocValue">IOC Value</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>IOC Profile</h3>
+                    <table class="profile-table" id="iocProfile"></table>
+                </div>
+                <div class="modal-section">
+                    <h3>Enrichment Data</h3>
+                    <div id="enrichmentData">
+                        <p>No enrichment data available.</p>
+                        <button class="btn btn-primary" id="enrichNowBtn">Enrich Now</button>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h3>Correlations</h3>
+                    <table class="data-table" id="modalCorrelationsTable">
+                        <thead>
+                            <tr>
+                                <th>Host</th>
+                                <th>User</th>
+                                <th>Timestamp</th>
+                                <th>Verdict</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modalCorrelations"></tbody>
+                    </table>
+                </div>
+                <div class="modal-section">
+                    <h3>Actions</h3>
+                    <div class="modal-actions">
+                        <button class="btn btn-primary" id="generateIocReportBtn">Generate AI Investigation Report</button>
+                        <button class="btn btn-secondary" id="copyIocBtn">Copy IOC Value</button>
+                        <button class="btn btn-danger" id="markFpBtn">Mark as False Positive</button>
+                    </div>
+                    <div class="ioc-report-area" id="iocReportArea" style="display: none;">
+                        <div class="briefing-content markdown" id="iocReportContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Manual IOC Modal -->
+    <div class="modal" id="addIocModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h2>Add Manual IOC</h2>
+                <button class="modal-close" id="closeAddModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addIocForm">
+                    <div class="form-group">
+                        <label>IOC Value *</label>
+                        <input type="text" id="newIocValue" required placeholder="e.g., 185.220.101.45">
+                    </div>
+                    <div class="form-group">
+                        <label>IOC Type *</label>
+                        <select id="newIocType" required>
+                            <option value="ip">IP Address</option>
+                            <option value="domain">Domain</option>
+                            <option value="url">URL</option>
+                            <option value="hash">File Hash</option>
+                            <option value="email">Email</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Threat Type</label>
+                        <select id="newThreatType">
+                            <option value="malware">Malware</option>
+                            <option value="c2">C2</option>
+                            <option value="phishing">Phishing</option>
+                            <option value="botnet">Botnet</option>
+                            <option value="ransomware">Ransomware</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Severity</label>
+                        <select id="newSeverity">
+                            <option value="Critical">Critical</option>
+                            <option value="High">High</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Malware Family (optional)</label>
+                        <input type="text" id="newMalwareFamily" placeholder="e.g., Emotet">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Add IOC</button>
+                        <button type="button" class="btn btn-secondary" id="cancelAddBtn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

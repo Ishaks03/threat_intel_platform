@@ -1,0 +1,572 @@
+{
+  "firewall_logs": [
+    {
+      "timestamp": "2024-06-01T08:15:23Z",
+      "src_ip": "10.10.1.15",
+      "dst_ip": "185.220.101.45",
+      "dst_port": 443,
+      "protocol": "TCP",
+      "action": "allow",
+      "bytes_sent": 1245,
+      "bytes_recv": 8762,
+      "hostname": "WORKSTATION-03",
+      "user": "jsmith"
+    },
+    {
+      "timestamp": "2024-06-01T09:32:45Z",
+      "src_ip": "10.10.1.22",
+      "dst_ip": "185.220.101.34",
+      "dst_port": 4444,
+      "protocol": "TCP",
+      "action": "allow",
+      "bytes_sent": 524,
+      "bytes_recv": 15234,
+      "hostname": "WORKSTATION-07",
+      "user": "mjohnson"
+    },
+    {
+      "timestamp": "2024-06-01T10:45:12Z",
+      "src_ip": "10.10.1.8",
+      "dst_ip": "185.220.101.61",
+      "dst_port": 1337,
+      "protocol": "TCP",
+      "action": "allow",
+      "bytes_sent": 892,
+      "bytes_recv": 4521,
+      "hostname": "WORKSTATION-02",
+      "user": "abrown"
+    },
+    {
+      "timestamp": "2024-06-01T11:20:33Z",
+      "src_ip": "10.10.1.45",
+      "dst_ip": "185.220.101.52",
+      "dst_port": 80,
+      "protocol": "TCP",
+      "action": "allow",
+      "bytes_sent": 2145,
+      "bytes_recv": 52341,
+      "hostname": "WORKSTATION-09",
+      "user": "dlee"
+    },
+    {
+      "timestamp": "2024-06-01T12:05:18Z",
+      "src_ip": "10.10.1.33",
+      "dst_ip": "185.220.101.47",
+      "dst_port": 8080,
+      "protocol": "TCP",
+      "action": "allow",
+      "bytes_sent": 1567,
+      "bytes_recv": 9823,
+      "hostname": "WORKSTATION-05",
+      "user": "kwilson"
+    },
+    {
+      "timestamp": "2024-06-01T08:45:00Z",
+      "src_ip": "10.10.1.10",
+      "dst_ip": "142.250.190.78",
+      "dst_port": 443,
+      "protocol": "TCP",
+      "action": "allow",
+      "bytes_sent": 3421,
+      "bytes_recv": 45123,
+      "hostname": "WORKSTATION-01",
+      "user": "jsmith"
+    },
+    {
+      "timestamp": "2024-06-01T09:15:22Z",
+      "src_ip": "10.10.1.12",
+      "dst_ip": "20.190.151.68",
+      "dst_port": 443,
+      "protocol": "TCP",
+      "action": "allow",
+      "bytes_sent": 2156,
+      "bytes_recv": 18934,
+      "hostname": "WORKSTATION-04",
+      "user": "mjohnson"
+    },
+    {
+      "timestamp": "2024-06-01T10:30:45Z",
+      "src_ip": "10.10.100.5",
+      "dst_ip": "52.84.32.145",
+      "dst_port": 443,
+      "protocol": "TCP",
+      "action": "allow",
+      "bytes_sent": 8923,
+      "bytes_recv": 234521,
+      "hostname": "SERVER-01",
+      "user": "svc_backup"
+    },
+    {
+      "timestamp": "2024-06-01T11:00:00Z",
+      "src_ip": "10.10.1.25",
+      "dst_ip": "151.101.1.69",
+      "dst_port": 443,
+      "protocol": "TCP",
+      "action": "allow",
+      "bytes_sent": 1234,
+      "bytes_recv": 56789,
+      "hostname": "WORKSTATION-06",
+      "user": "abrown"
+    },
+    {
+      "timestamp": "2024-06-01T11:45:30Z",
+      "src_ip": "10.10.100.10",
+      "dst_ip": "13.107.42.14",
+      "dst_port": 443,
+      "protocol": "TCP",
+      "action": "allow",
+      "bytes_sent": 4567,
+      "bytes_recv": 89123,
+      "hostname": "SERVER-02",
+      "user": "svc_update"
+    },
+    {
+      "timestamp": "2024-06-01T12:30:15Z",
+      "src_ip": "10.10.1.18",
+      "dst_ip": "104.18.32.68",
+      "dst_port": 443,
+      "protocol": "TCP",
+      "action": "allow",
+      "bytes_sent": 2345,
+      "bytes_recv": 67890,
+      "hostname": "WORKSTATION-08",
+      "user": "dlee"
+    },
+    {
+      "timestamp": "2024-06-01T13:15:00Z",
+      "src_ip": "10.10.1.30",
+      "dst_ip": "172.217.14.110",
+      "dst_port": 443,
+      "protocol": "TCP",
+      "action": "allow",
+      "bytes_sent": 1890,
+      "bytes_recv": 34567,
+      "hostname": "WORKSTATION-10",
+      "user": "kwilson"
+    },
+    {
+      "timestamp": "2024-06-01T14:00:45Z",
+      "src_ip": "10.10.100.15",
+      "dst_ip": "23.45.67.89",
+      "dst_port": 22,
+      "protocol": "TCP",
+      "action": "allow",
+      "bytes_sent": 567,
+      "bytes_recv": 1234,
+      "hostname": "SERVER-03",
+      "user": "admin"
+    },
+    {
+      "timestamp": "2024-06-01T14:32:00Z",
+      "src_ip": "10.10.1.5",
+      "dst_ip": "8.8.8.8",
+      "dst_port": 53,
+      "protocol": "UDP",
+      "action": "allow",
+      "bytes_sent": 64,
+      "bytes_recv": 128,
+      "hostname": "WORKSTATION-01",
+      "user": "jsmith"
+    },
+    {
+      "timestamp": "2024-06-01T15:10:20Z",
+      "src_ip": "10.10.1.40",
+      "dst_ip": "1.1.1.1",
+      "dst_port": 53,
+      "protocol": "UDP",
+      "action": "allow",
+      "bytes_sent": 64,
+      "bytes_recv": 128,
+      "hostname": "WORKSTATION-04",
+      "user": "mjohnson"
+    }
+  ],
+  "dns_logs": [
+    {
+      "timestamp": "2024-06-01T08:10:15Z",
+      "query_name": "update-cdn-service.xyz",
+      "query_type": "A",
+      "response_ip": "185.220.101.34",
+      "client_ip": "10.10.1.15",
+      "hostname": "WORKSTATION-03",
+      "user": "jsmith"
+    },
+    {
+      "timestamp": "2024-06-01T09:25:30Z",
+      "query_name": "cdn-delivery-host.xyz",
+      "query_type": "A",
+      "response_ip": "185.220.101.52",
+      "client_ip": "10.10.1.22",
+      "hostname": "WORKSTATION-07",
+      "user": "mjohnson"
+    },
+    {
+      "timestamp": "2024-06-01T10:40:00Z",
+      "query_name": "payload-distribution.top",
+      "query_type": "A",
+      "response_ip": "185.220.101.47",
+      "client_ip": "10.10.1.8",
+      "hostname": "WORKSTATION-02",
+      "user": "abrown"
+    },
+    {
+      "timestamp": "2024-06-01T11:15:45Z",
+      "query_name": "secure-login-verify.online",
+      "query_type": "A",
+      "response_ip": "185.220.102.15",
+      "client_ip": "10.10.1.45",
+      "hostname": "WORKSTATION-09",
+      "user": "dlee"
+    },
+    {
+      "timestamp": "2024-06-01T12:00:10Z",
+      "query_name": "telemetry-check.io",
+      "query_type": "A",
+      "response_ip": "185.220.101.61",
+      "client_ip": "10.10.1.33",
+      "hostname": "WORKSTATION-05",
+      "user": "kwilson"
+    },
+    {
+      "timestamp": "2024-06-01T08:30:00Z",
+      "query_name": "www.google.com",
+      "query_type": "A",
+      "response_ip": "142.250.190.78",
+      "client_ip": "10.10.1.10",
+      "hostname": "WORKSTATION-01",
+      "user": "jsmith"
+    },
+    {
+      "timestamp": "2024-06-01T09:00:15Z",
+      "query_name": "login.microsoftonline.com",
+      "query_type": "A",
+      "response_ip": "20.190.151.68",
+      "client_ip": "10.10.1.12",
+      "hostname": "WORKSTATION-04",
+      "user": "mjohnson"
+    },
+    {
+      "timestamp": "2024-06-01T10:15:30Z",
+      "query_name": "github.com",
+      "query_type": "A",
+      "response_ip": "140.82.121.4",
+      "client_ip": "10.10.1.25",
+      "hostname": "WORKSTATION-06",
+      "user": "abrown"
+    },
+    {
+      "timestamp": "2024-06-01T11:30:00Z",
+      "query_name": "slack.com",
+      "query_type": "A",
+      "response_ip": "52.84.32.145",
+      "client_ip": "10.10.1.18",
+      "hostname": "WORKSTATION-08",
+      "user": "dlee"
+    },
+    {
+      "timestamp": "2024-06-01T12:45:20Z",
+      "query_name": "outlook.office365.com",
+      "query_type": "A",
+      "response_ip": "52.96.166.194",
+      "client_ip": "10.10.1.30",
+      "hostname": "WORKSTATION-10",
+      "user": "kwilson"
+    },
+    {
+      "timestamp": "2024-06-01T13:00:00Z",
+      "query_name": "drive.google.com",
+      "query_type": "A",
+      "response_ip": "172.217.14.110",
+      "client_ip": "10.10.1.5",
+      "hostname": "WORKSTATION-01",
+      "user": "jsmith"
+    },
+    {
+      "timestamp": "2024-06-01T14:15:45Z",
+      "query_name": "aws.amazon.com",
+      "query_type": "A",
+      "response_ip": "54.239.28.85",
+      "client_ip": "10.10.100.5",
+      "hostname": "SERVER-01",
+      "user": "svc_backup"
+    },
+    {
+      "timestamp": "2024-06-01T15:30:10Z",
+      "query_name": "api.cloudflare.com",
+      "query_type": "A",
+      "response_ip": "104.18.32.68",
+      "client_ip": "10.10.100.10",
+      "hostname": "SERVER-02",
+      "user": "svc_update"
+    },
+    {
+      "timestamp": "2024-06-01T16:00:00Z",
+      "query_name": "zoom.us",
+      "query_type": "A",
+      "response_ip": "52.202.62.192",
+      "client_ip": "10.10.1.40",
+      "hostname": "WORKSTATION-04",
+      "user": "mjohnson"
+    },
+    {
+      "timestamp": "2024-06-01T16:30:30Z",
+      "query_name": "teams.microsoft.com",
+      "query_type": "A",
+      "response_ip": "52.113.194.132",
+      "client_ip": "10.10.1.35",
+      "hostname": "WORKSTATION-05",
+      "user": "kwilson"
+    }
+  ],
+  "proxy_logs": [
+    {
+      "timestamp": "2024-06-01T09:35:00Z",
+      "url": "http://cdn-delivery-host.xyz/update/setup.msi",
+      "method": "GET",
+      "status_code": 200,
+      "bytes": 524288,
+      "client_ip": "10.10.1.22",
+      "hostname": "WORKSTATION-07",
+      "user": "mjohnson",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    },
+    {
+      "timestamp": "2024-06-01T10:50:15Z",
+      "url": "http://secure-login-verify.online/login/microsoft/",
+      "method": "GET",
+      "status_code": 200,
+      "bytes": 45678,
+      "client_ip": "10.10.1.45",
+      "hostname": "WORKSTATION-09",
+      "user": "dlee",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    },
+    {
+      "timestamp": "2024-06-01T11:25:30Z",
+      "url": "http://185.220.101.52/payload/dropper.exe",
+      "method": "GET",
+      "status_code": 200,
+      "bytes": 1048576,
+      "client_ip": "10.10.1.8",
+      "hostname": "WORKSTATION-02",
+      "user": "abrown",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    },
+    {
+      "timestamp": "2024-06-01T08:45:00Z",
+      "url": "https://www.google.com/search?q=weather",
+      "method": "GET",
+      "status_code": 200,
+      "bytes": 12345,
+      "client_ip": "10.10.1.10",
+      "hostname": "WORKSTATION-01",
+      "user": "jsmith",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    },
+    {
+      "timestamp": "2024-06-01T09:15:30Z",
+      "url": "https://github.com/microsoft/vscode/releases",
+      "method": "GET",
+      "status_code": 200,
+      "bytes": 34567,
+      "client_ip": "10.10.1.25",
+      "hostname": "WORKSTATION-06",
+      "user": "abrown",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    },
+    {
+      "timestamp": "2024-06-01T10:30:00Z",
+      "url": "https://outlook.office365.com/mail/inbox",
+      "method": "GET",
+      "status_code": 200,
+      "bytes": 56789,
+      "client_ip": "10.10.1.30",
+      "hostname": "WORKSTATION-10",
+      "user": "kwilson",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    },
+    {
+      "timestamp": "2024-06-01T11:45:15Z",
+      "url": "https://slack.com/api/conversations.list",
+      "method": "GET",
+      "status_code": 200,
+      "bytes": 23456,
+      "client_ip": "10.10.1.18",
+      "hostname": "WORKSTATION-08",
+      "user": "dlee",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    },
+    {
+      "timestamp": "2024-06-01T12:30:45Z",
+      "url": "https://zoom.us/j/1234567890",
+      "method": "GET",
+      "status_code": 200,
+      "bytes": 8901,
+      "client_ip": "10.10.1.40",
+      "hostname": "WORKSTATION-04",
+      "user": "mjohnson",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    },
+    {
+      "timestamp": "2024-06-01T13:15:00Z",
+      "url": "https://drive.google.com/drive/my-drive",
+      "method": "GET",
+      "status_code": 200,
+      "bytes": 67890,
+      "client_ip": "10.10.1.5",
+      "hostname": "WORKSTATION-01",
+      "user": "jsmith",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    },
+    {
+      "timestamp": "2024-06-01T14:00:30Z",
+      "url": "https://aws.amazon.com/console/home",
+      "method": "GET",
+      "status_code": 200,
+      "bytes": 45678,
+      "client_ip": "10.10.100.5",
+      "hostname": "SERVER-01",
+      "user": "svc_backup",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    }
+  ],
+  "auth_logs": [
+    {
+      "timestamp": "2024-06-01T07:55:00Z",
+      "event_type": "login_success",
+      "username": "jsmith",
+      "source_ip": "10.10.1.10",
+      "hostname": "WORKSTATION-01",
+      "success": true,
+      "failure_reason": null
+    },
+    {
+      "timestamp": "2024-06-01T08:00:15Z",
+      "event_type": "login_success",
+      "username": "mjohnson",
+      "source_ip": "10.10.1.22",
+      "hostname": "WORKSTATION-07",
+      "success": true,
+      "failure_reason": null
+    },
+    {
+      "timestamp": "2024-06-01T08:05:30Z",
+      "event_type": "login_success",
+      "username": "abrown",
+      "source_ip": "10.10.1.8",
+      "hostname": "WORKSTATION-02",
+      "success": true,
+      "failure_reason": null
+    },
+    {
+      "timestamp": "2024-06-01T08:10:45Z",
+      "event_type": "login_failure",
+      "username": "admin",
+      "source_ip": "185.220.101.99",
+      "hostname": "SERVER-01",
+      "success": false,
+      "failure_reason": "Invalid password"
+    },
+    {
+      "timestamp": "2024-06-01T08:12:00Z",
+      "event_type": "login_failure",
+      "username": "admin",
+      "source_ip": "185.220.101.99",
+      "hostname": "SERVER-01",
+      "success": false,
+      "failure_reason": "Invalid password"
+    },
+    {
+      "timestamp": "2024-06-01T08:15:00Z",
+      "event_type": "login_success",
+      "username": "dlee",
+      "source_ip": "10.10.1.45",
+      "hostname": "WORKSTATION-09",
+      "success": true,
+      "failure_reason": null
+    },
+    {
+      "timestamp": "2024-06-01T08:20:30Z",
+      "event_type": "login_success",
+      "username": "kwilson",
+      "source_ip": "10.10.1.33",
+      "hostname": "WORKSTATION-05",
+      "success": true,
+      "failure_reason": null
+    },
+    {
+      "timestamp": "2024-06-01T09:00:00Z",
+      "event_type": "login_success",
+      "username": "svc_backup",
+      "source_ip": "10.10.100.5",
+      "hostname": "SERVER-01",
+      "success": true,
+      "failure_reason": null
+    },
+    {
+      "timestamp": "2024-06-01T10:30:15Z",
+      "event_type": "login_failure",
+      "username": "root",
+      "source_ip": "185.220.102.15",
+      "hostname": "SERVER-02",
+      "success": false,
+      "failure_reason": "Account locked"
+    },
+    {
+      "timestamp": "2024-06-01T14:45:00Z",
+      "event_type": "login_success",
+      "username": "admin",
+      "source_ip": "10.10.100.15",
+      "hostname": "SERVER-03",
+      "success": true,
+      "failure_reason": null
+    }
+  ],
+  "file_hash_logs": [
+    {
+      "timestamp": "2024-06-01T09:40:00Z",
+      "file_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "file_name": "update_installer.exe",
+      "file_path": "C:\\Users\\mjohnson\\Downloads\\update_installer.exe",
+      "process_name": "chrome.exe",
+      "hostname": "WORKSTATION-07",
+      "user": "mjohnson"
+    },
+    {
+      "timestamp": "2024-06-01T10:55:30Z",
+      "file_hash": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
+      "file_name": "invoice_doc.exe",
+      "file_path": "C:\\Users\\abrown\\Downloads\\invoice_doc.exe",
+      "process_name": "outlook.exe",
+      "hostname": "WORKSTATION-02",
+      "user": "abrown"
+    },
+    {
+      "timestamp": "2024-06-01T11:30:45Z",
+      "file_hash": "5d41402abc4b2a76b9719d911017c592",
+      "file_name": "report_q2.docx",
+      "file_path": "C:\\Users\\jsmith\\Documents\\report_q2.docx",
+      "process_name": "WINWORD.EXE",
+      "hostname": "WORKSTATION-01",
+      "user": "jsmith"
+    },
+    {
+      "timestamp": "2024-06-01T12:15:00Z",
+      "file_hash": "7d793037a0760186574b0282f2f435e7",
+      "file_name": "presentation.pptx",
+      "file_path": "C:\\Users\\dlee\\Documents\\presentation.pptx",
+      "process_name": "POWERPNT.EXE",
+      "hostname": "WORKSTATION-09",
+      "user": "dlee"
+    },
+    {
+      "timestamp": "2024-06-01T13:45:20Z",
+      "file_hash": "098f6bcd4621d373cade4e832627b4f6",
+      "file_name": "financial_data.xlsx",
+      "file_path": "C:\\Users\\kwilson\\Documents\\financial_data.xlsx",
+      "process_name": "EXCEL.EXE",
+      "hostname": "WORKSTATION-05",
+      "user": "kwilson"
+    }
+  ]
+}
